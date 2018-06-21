@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Crear los 3 tipos de solicitudes por default
+load File.expand_path('../seeds/requests.rb', __FILE__)
