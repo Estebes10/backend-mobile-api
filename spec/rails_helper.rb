@@ -37,6 +37,8 @@ end
 
 ActiveRecord::Migration.maintain_test_schema!
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -45,6 +47,8 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+
+  config.include RequestSpecHelper, type: :request
 
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
