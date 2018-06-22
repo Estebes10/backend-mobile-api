@@ -1,12 +1,12 @@
-class Request < ApplicationRecord
+class Event < ApplicationRecord
 
   # asociaciones
-  has_many :events
+  belongs_to :request
 
   # validaciones
   validates :name,
     presence: true,
-    length: { maximum: 64 }
+    length: { maximum: 128 }
 
   validates :description,
     length: { maximum: 1024 }
