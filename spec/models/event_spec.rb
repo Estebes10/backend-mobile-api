@@ -39,7 +39,7 @@ RSpec.describe Event, type: :model do
   end
 
   # Suite de pruebas para verificar que los datos no sobrepasan los limites
-  it 'no es válido si el nombre tiene más de 64 caracteres' do
+  it 'no es válido si el nombre tiene más de 128 caracteres' do
     event.name = 'a' * 129
 
     expect(event).not_to be_valid
@@ -69,6 +69,6 @@ RSpec.describe Event, type: :model do
   # Pruebas para verificar asociaciones con otras tablas
   it { should belong_to(:request) }
 
-  it ' tiene asociado varias tipos de eventos'
+  it { should have_many(:situations) }
 
 end

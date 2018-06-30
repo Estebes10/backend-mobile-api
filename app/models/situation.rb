@@ -1,19 +1,20 @@
-class Event < ApplicationRecord
+class Situation < ApplicationRecord
 
   # asociaciones
-  belongs_to :request
-
-  has_many :situations
+  belongs_to :event
 
   # validaciones
   validates :name,
     presence: true,
-    length: { maximum: 128 }
+    length:   { maximum: 128 }
 
   validates :description,
     length: { maximum: 1024 }
 
   validates :status,
+    inclusion: { in: [true, false] }
+
+  validates :instantaneous,
     inclusion: { in: [true, false] }
 
   validates :code,

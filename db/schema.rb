@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_21_231734) do
+ActiveRecord::Schema.define(version: 2018_06_30_030148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,5 +37,19 @@ ActiveRecord::Schema.define(version: 2018_06_21_231734) do
     t.index ["code"], name: "index_requests_on_code", unique: true
   end
 
+  create_table "situations", force: :cascade do |t|
+    t.string "name", limit: 128, null: false
+    t.string "code", limit: 16, null: false
+    t.string "description", limit: 1024
+    t.boolean "status", default: true, null: false
+    t.boolean "instantaneous", default: false, null: false
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_situations_on_code", unique: true
+    t.index ["event_id"], name: "index_situations_on_event_id"
+  end
+
   add_foreign_key "events", "requests"
+  add_foreign_key "situations", "events"
 end
