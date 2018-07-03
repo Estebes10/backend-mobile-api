@@ -1,11 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'API tipos de eventos' do
+RSpec.describe 'API tipos de eventos', type: :request do
 
+  # inicializar datos de prueba
   let!(:request) { create(:request) }
-  let!(:events) { create_list(:event, 20, request_id: request.id) }
+
   let(:request_id) { request.id }
-  let(:id) { events.first.id }
+
+  let!(:events) { create_list(:event, 20, request_id: request.id) }
+
+  let(:event_id) { events.first.id }
 
   # Conjunto de pruebas para GET /requests/:request_id/events
   # Retorna todos los tipos de eventos por cada solicitud
@@ -22,7 +26,7 @@ RSpec.describe 'API tipos de eventos' do
       end
     end
 
-    context 'cuando no existe el eventos' do
+    context 'cuando no existe el tipo de solicitud' do
       let(:request_id) { 0 }
 
       it 'retorna un codigo http NOT FOUND' do
@@ -37,8 +41,9 @@ RSpec.describe 'API tipos de eventos' do
 
   # Conjunto de pruebas para GET /requets/:request_id/events/:id
   # retorna un tipo de evento de acuerdo al tipo de solicitud
-  describe 'GET /requets/:request_id/events/:id' do
-    before { get "/requets/#{request_id}/events/#{id}" }
+  describe 'GET /requests/:request_id/events/:id' do
+
+    before { get "/requests/#{request_id}/events/#{event_id}" }
 
     context 'cuando el evento existe' do
       it 'retorna un codigo http OK' do
@@ -46,12 +51,12 @@ RSpec.describe 'API tipos de eventos' do
       end
 
       it 'regresa el tipo de evento pedido' do
-        expect(json['id']).to eq(id)
+        expect(json['id']).to eq(event_id)
       end
     end
 
     context 'cuando el evento no existe' do
-      let(:id) { 0 }
+      let(:event_id) { 0 }
 
       it 'retorna un código http NOT FOUND' do
         expect(response).to have_http_status(404)

@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
     # APIs para obtener todos los eventos de cada solicitud o un evento en
     # especifico
-    resources :events, only: %I[index show]
+    resources :events, only: %I[index show] do
+
+      resources :situations, only: %I[index show]
+    end
   end
 
 end
