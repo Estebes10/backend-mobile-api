@@ -11,3 +11,7 @@ load File.expand_path('../seeds/requests.rb', __FILE__)
 
 # Crear los difernetes tipos de eventos por tipo solicitud
 load File.expand_path('../seeds/events.rb', __FILE__)
+
+# Crear las diferentes situaciones, las cuales se mostraran como un selector en
+# el formulario para generar los diferentes reportes, incidencias o solicitudes.
+load File.expand_path('../seeds/situations.rb', __FILE__)
