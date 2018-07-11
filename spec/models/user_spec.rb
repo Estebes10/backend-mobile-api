@@ -78,7 +78,7 @@ RSpec.describe User, type: :model do
   # pruebas para validar que el codigo sea único para cada registro
   it 'no es válido si el número telefonico ya es usado por otro registro' do
     # Crear un registro previamante e intentar guardar el nuevo registro con el
-    # el mismo código
+    # el mismo telefono
     FactoryBot.create(:user, phone: user.phone)
 
     expect(user).not_to be_valid
@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
 
   it 'no es válido si el correo electrónico ya es usado por otro registro' do
     # Crear un registro previamante e intentar guardar el nuevo registro con el
-    # el mismo código
+    # el mismo correo
     FactoryBot.create(:user, email: user.email)
 
     expect(user).not_to be_valid

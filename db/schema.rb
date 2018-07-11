@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_235826) do
+ActiveRecord::Schema.define(version: 2018_07_11_011523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 2018_07_10_235826) do
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_events_on_code", unique: true
     t.index ["request_id"], name: "index_events_on_request_id"
+  end
+
+  create_table "reportes", force: :cascade do |t|
+    t.date "date", default: "2018-07-11", null: false
+    t.time "hour", default: "2000-01-01 22:08:41", null: false
+    t.text "description", null: false
+    t.text "attachments", default: [], array: true
+    t.string "folio", null: false
+    t.integer "user_id"
+    t.integer "situation_id", null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["folio"], name: "index_reportes_on_folio", unique: true
   end
 
   create_table "requests", force: :cascade do |t|
