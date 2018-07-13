@@ -117,11 +117,6 @@ RSpec.describe 'Usuario API', type: :request do
           .to eq(false)
       end
 
-      it 'retorna un mensaje de error' do
-        expect(json['message'])
-          .to eq("Couldn't find User with 'phone'="+user.phone)
-      end
-
     end
 
     context 'cuando se realiza la petición sin el número telefónico' do
