@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  post '/checkuser', to: 'users#checkuser'
+
+  post '/register', to: 'users#register'
+
+
   # API solo para obtener todas las solicitudes y una en especifico
   resources :requests, only: %I[index show] do
 
