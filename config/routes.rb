@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
+  post '/reportes', to: "reportes#create"
+
 end
