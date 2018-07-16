@@ -28,11 +28,12 @@ ActiveRecord::Schema.define(version: 2018_07_11_011523) do
   end
 
   create_table "reportes", force: :cascade do |t|
-    t.date "date", default: "2018-07-11", null: false
-    t.time "hour", default: "2000-01-01 22:08:41", null: false
+    t.date "date", default: "2018-07-16", null: false
+    t.string "hour", default: "17:30:49", null: false
     t.text "description", null: false
     t.text "attachments", default: [], array: true
     t.string "folio", null: false
+    t.string "place", null: false
     t.integer "user_id"
     t.integer "situation_id", null: false
     t.boolean "active", default: true, null: false

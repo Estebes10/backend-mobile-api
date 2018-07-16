@@ -50,6 +50,12 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).not_to be_valid
   end
 
+  it 'no es válido sin una dirección del lugar de acontecimiento' do
+    reporte.place = nil
+
+    expect(reporte).not_to be_valid
+  end
+
   # Suite de pruebas para validas que los atributos pueden ser nulos
   it 'es válido sin adjuntos (imagenes o videos)' do
     reporte.attachments = nil
