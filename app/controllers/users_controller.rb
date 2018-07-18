@@ -18,15 +18,27 @@ class UsersController < ApplicationController
     end
   end
 
+  #*
+   # Endpoint : http.//<domain>/checkuser
+   # Method : POST
+   # Params : Phone
+   # Result : JSON
+  #*
   def checkuser
     if params[:phone]
       if User.find_by(phone: params[:phone])
-        json_response({ exists: true }, :ok)
+        msg = {:exists => true}
+        render :json => msg
+        #json_response({ exists: true }, :ok)
       else
-        json_response({ exists: false }, :not_found)
+        msg = {:exists => false}
+        render :json => msg
+        #json_response({ exists: false }, :not_found)
       end
     else
-      json_response({ error_msg: "Required parameter (phone) is missing" }, :not_found)
+      msg = {:error_msg => "Required parameter (phone) is missing"}
+      render :json => msg
+      #json_response({ error_msg: "Required parameter (phone) is missing" }, :not_found)
     end
   end
 
