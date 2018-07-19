@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  self.primary_key = "phone"
+
   # validaciones
   validates :name,
     presence: true,
