@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   post '/register', to: 'users#register'
 
+  post '/getuser', to: 'users#getuser'
 
   # API solo para obtener todas las solicitudes y una en especifico
   resources :requests, only: %I[index show] do
@@ -15,5 +16,7 @@ Rails.application.routes.draw do
       resources :situations, only: %I[index show]
     end
   end
+
+  post '/reportes', to: "reportes#create"
 
 end

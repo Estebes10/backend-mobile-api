@@ -136,4 +136,76 @@ RSpec.describe 'Usuario API', type: :request do
 
   end
 
+  describe 'POST getuser' do
+
+    before(:each) do
+      @user = FactoryBot.create(:user)
+    end
+
+    context 'cuando el usuario existe' do
+
+      before { post '/getuser', params: { phone: @user.phone } }
+
+      it 'retorna un codigo http OK' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'retorna el nombre del usuario' do
+        expect(json['name']).to eq(@user.name)
+      end
+
+      it 'retorna el apellido del usuario' do
+        expect(json['lastname']).to eq(@user.lastname)
+      end
+
+      it 'retorna el telefono del usuario' do
+        expect(json['phone']).to eq(@user.phone)
+      end
+
+      it 'retorna el correo del usuario' do
+        expect(json['email']).to eq(@user.email)
+      end
+
+      it 'retorna la dirección del usuario' do
+        expect(json['address']).to eq(@user.address)
+      end
+
+    end
+
+    context 'cuando el usuario no existe' do
+
+      before(:each) do
+        User.destroy_all
+      end
+
+      before { post '/getuser', params: { phone: user.phone } }
+
+      it 'retorna un codigo http NOT FOUND' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'retorna un mensaje de error' do
+        expect(json['error_msg'])
+          .to eq("User does not exists")
+      end
+
+    end
+
+    context 'cuando se realiza la petición sin el número telefónico' do
+
+      before { post '/getuser', params: nil }
+
+      it 'retorna un codigo http NOT FOUND' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'retorna un mensaje de error' do
+        expect(json['error_msg'])
+          .to match("Required parameter (phone) is missing")
+      end
+
+    end
+
+  end
+
 end
