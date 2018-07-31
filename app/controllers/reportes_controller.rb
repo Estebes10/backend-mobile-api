@@ -17,8 +17,12 @@ class ReportesController < ApplicationController
       :folio,
       :user_id,
       :situation_id,
-      :place,
-      { :attachments => [] }
+      :street,
+      :colony,
+      :zip_code,
+      :requester_name,
+      :requester_lastname,
+      { :attachments => [], :people_involved => [:name, :lastname, :phone] }
     )
   end
 

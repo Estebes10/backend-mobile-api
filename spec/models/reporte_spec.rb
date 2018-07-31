@@ -50,8 +50,32 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).not_to be_valid
   end
 
-  it 'no es válido sin una dirección del lugar de acontecimiento' do
-    reporte.place = nil
+  it 'no es válido sin la calle del lugar de acontecimiento' do
+    reporte.street = nil
+
+    expect(reporte).not_to be_valid
+  end
+
+  it 'no es válido sin la colonia del lugar de acontecimiento' do
+    reporte.colony = nil
+
+    expect(reporte).not_to be_valid
+  end
+
+  it 'no es válido sin el código postal del lugar de acontecimiento' do
+    reporte.zip_code = nil
+
+    expect(reporte).not_to be_valid
+  end
+
+  it 'no es válido si el nombre del solicitante' do
+    reporte.requester_name = nil
+
+    expect(reporte).not_to be_valid
+  end
+
+  it 'no es válido sin el apellido del solicitante' do
+    reporte.requester_lastname = nil
 
     expect(reporte).not_to be_valid
   end
@@ -69,6 +93,12 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).to be_valid
   end
 
+  it 'es válido si no se especifican posibles involucrados' do
+    reporte.people_involved = nil
+
+    expect(reporte).to be_valid
+  end
+
   it 'es valido si se agregan varios adjuntos' do
     reporte.attachments = []
     adjunto1 = Faker::Company.logo
@@ -77,6 +107,16 @@ RSpec.describe Reporte, type: :model do
     reporte.attachments << adjunto2
 
     expect(reporte.attachments).to eq([adjunto1, adjunto2])
+  end
+
+  it 'es valido si se agregan varios adjuntos' do
+    reporte.people_involved = []
+    person1 = {nombre: Faker::Name.name, lastname: Faker::Name.last_name, phone: Faker::PhoneNumber.cell_phone }
+    person2 = {nombre: Faker::Name.name, lastname: Faker::Name.last_name, phone: Faker::PhoneNumber.cell_phone }
+    reporte.people_involved << person1
+    reporte.people_involved << person2
+
+    expect(reporte.people_involved).to eq([person1, person2])
   end
 
   # pruebas para validar que el folio sea único para cada registro

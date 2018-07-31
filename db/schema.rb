@@ -28,12 +28,17 @@ ActiveRecord::Schema.define(version: 2018_07_11_011523) do
   end
 
   create_table "reportes", force: :cascade do |t|
-    t.date "date", default: "2018-07-16", null: false
-    t.string "hour", default: "17:30:49", null: false
+    t.date "date", default: "2018-07-30", null: false
+    t.string "hour", default: "18:56:44", null: false
     t.text "description", null: false
     t.text "attachments", default: [], array: true
     t.string "folio", null: false
-    t.string "place", null: false
+    t.string "zip_code", default: "N/A", null: false
+    t.string "street", default: "N/A", null: false
+    t.string "colony", default: "N/A", null: false
+    t.string "requester_name", default: "N/A", null: false
+    t.string "requester_lastname", default: "N/A", null: false
+    t.text "people_involved", default: [], array: true
     t.integer "user_id"
     t.integer "situation_id", null: false
     t.boolean "active", default: true, null: false
