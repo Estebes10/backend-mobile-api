@@ -22,7 +22,7 @@ class ReportesController < ApplicationController
       :zip_code,
       :requester_name,
       :requester_lastname,
-      { :attachments => [], :people_involved => [] }
+      { :attachments => [], :people_involved => [:name, :lastname, :phone] }
     )
   end
 
