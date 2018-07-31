@@ -14,7 +14,12 @@ RSpec.describe 'API tipos de reportes', type: :request do
         folio: '0000001',
         user_id: nil,
         situation_id: 1,
-        place: Faker::Address.full_address
+        street: Faker::Address.street_name,
+        zip_code: Faker::Address.zip_code,
+        colony: Faker::Address.city,
+        requester_name: Faker::Name.first_name,
+        requester_lastname: Faker::Name.last_name,
+        people_involved: [""]
       }
     end
 
@@ -157,9 +162,9 @@ RSpec.describe 'API tipos de reportes', type: :request do
 
       end
 
-      context 'por la falta de la dirección del lugar de la solicitud' do
+      context 'por la falta de la calle del lugar de la solicitud' do
 
-        before { @valid_attributes[:place] = nil }
+        before { @valid_attributes[:street] = nil }
 
         before { post '/reportes', params: @valid_attributes }
 
@@ -169,7 +174,75 @@ RSpec.describe 'API tipos de reportes', type: :request do
 
         it 'retorna un mensaje de error' do
           expect(response.body)
-            .to match(/Validation failed: Place can't be blank/)
+            .to match(/Validation failed: Street can't be blank/)
+        end
+
+      end
+
+      context 'por la falta de la colonia del lugar de la solicitud' do
+
+        before { @valid_attributes[:colony] = nil }
+
+        before { post '/reportes', params: @valid_attributes }
+
+        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'retorna un mensaje de error' do
+          expect(response.body)
+            .to match(/Validation failed: Colony can't be blank/)
+        end
+
+      end
+
+      context 'por la falta de la calle del lugar de la solicitud' do
+
+        before { @valid_attributes[:zip_code] = nil }
+
+        before { post '/reportes', params: @valid_attributes }
+
+        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'retorna un mensaje de error' do
+          expect(response.body)
+            .to match(/Validation failed: Zip code can't be blank/)
+        end
+
+      end
+
+      context 'por la falta de la calle del lugar de la solicitud' do
+
+        before { @valid_attributes[:requester_name] = nil }
+
+        before { post '/reportes', params: @valid_attributes }
+
+        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'retorna un mensaje de error' do
+          expect(response.body)
+            .to match(/Validation failed: Requester name can't be blank/)
+        end
+
+      end
+
+      context 'por la falta de la calle del lugar de la solicitud' do
+
+        before { @valid_attributes[:requester_lastname] = nil }
+
+        before { post '/reportes', params: @valid_attributes }
+
+        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'retorna un mensaje de error' do
+          expect(response.body)
+            .to match(/Validation failed: Requester lastname can't be blank/)
         end
 
       end

@@ -10,6 +10,7 @@ class Reporte < ApplicationRecord
 
   validates :hour,
     presence: true
+
   validates :active,
     inclusion: { in: [true, false] }
 
@@ -19,7 +20,19 @@ class Reporte < ApplicationRecord
   validates :description,
     presence: true
 
-  validates :place,
+  validates :street,
+    presence: true
+
+  validates :colony,
+    presence: true
+
+  validates :zip_code,
+    presence: true
+
+  validates :requester_name,
+    presence: true
+
+  validates :requester_lastname,
     presence: true
 
   def find_situation
