@@ -99,6 +99,12 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).to be_valid
   end
 
+  it 'es válido sin el numero de casa del lugar de acontecimiento' do
+    reporte.house_number = nil
+
+    expect(reporte).to be_valid
+  end
+
   it 'es valido si se agregan varios adjuntos' do
     reporte.attachments = []
     adjunto1 = Faker::Company.logo
@@ -109,7 +115,7 @@ RSpec.describe Reporte, type: :model do
     expect(reporte.attachments).to eq([adjunto1, adjunto2])
   end
 
-  it 'es valido si se agregan varios adjuntos' do
+  it 'es valido si se agregan varias personas involucradas' do
     reporte.people_involved = []
     person1 = {nombre: Faker::Name.name, lastname: Faker::Name.last_name, phone: Faker::PhoneNumber.cell_phone }
     person2 = {nombre: Faker::Name.name, lastname: Faker::Name.last_name, phone: Faker::PhoneNumber.cell_phone }

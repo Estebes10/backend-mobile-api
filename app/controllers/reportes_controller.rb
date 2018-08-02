@@ -20,6 +20,7 @@ class ReportesController < ApplicationController
       :street,
       :colony,
       :zip_code,
+      :house_number,
       :requester_name,
       :requester_lastname,
       { :attachments => [], :people_involved => [:name, :lastname, :phone] }

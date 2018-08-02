@@ -9,6 +9,7 @@ class CreateReportes < ActiveRecord::Migration[5.2]
       t.string :folio,              null: false
       t.string :zip_code,           null: false, default: 'N/A'
       t.string :street,             null: false, default: 'N/A'
+      t.string :house_number,                    default: 'N/A'
       t.string :colony,             null: false, default: 'N/A'
       t.string :requester_name,     null: false, default: 'N/A'
       t.string :requester_lastname, null: false, default: 'N/A'

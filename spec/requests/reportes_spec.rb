@@ -15,11 +15,12 @@ RSpec.describe 'API tipos de reportes', type: :request do
         user_id: nil,
         situation_id: 1,
         street: Faker::Address.street_name,
+        house_number:  Faker::Address.building_number,
         zip_code: Faker::Address.zip_code,
         colony: Faker::Address.city,
         requester_name: Faker::Name.first_name,
         requester_lastname: Faker::Name.last_name,
-        people_involved: [""]
+        people_involved: []
       }
     end
 
@@ -53,8 +54,35 @@ RSpec.describe 'API tipos de reportes', type: :request do
           expect(json['situation_id']).to eq(@valid_attributes[:situation_id])
         end
 
-        it 'crea un reporte con la dirección de la solicitud' do
-          expect(json['place']).to eq(@valid_attributes[:place])
+        it 'crea un reporte con la calle de la solicitud' do
+          expect(json['street']).to eq(@valid_attributes[:street])
+        end
+
+        it 'crea un reporte con el numero de casa de la solicitud' do
+          expect(json['house_number']).to eq(@valid_attributes[:house_number])
+        end
+
+        it 'crea un reporte con el codigo postal de la solicitud' do
+          expect(json['zip_code']).to eq(@valid_attributes[:zip_code])
+        end
+
+        it 'crea un reporte con el nombre de la colonia de la solicitud' do
+          expect(json['colony']).to eq(@valid_attributes[:colony])
+        end
+
+        it 'crea un reporte con el nombre del solicitante' do
+          expect(json['requester_name'])
+            .to eq(@valid_attributes[:requester_name])
+        end
+
+        it 'crea un reporte con el apellido del solicitante' do
+          expect(json['requester_lastname'])
+            .to eq(@valid_attributes[:requester_lastname])
+        end
+
+        it 'crea un reporte con una arreglo de personas involucradas' do
+          expect(json['people_involved'])
+            .to eq(@valid_attributes[:people_involved])
         end
 
         it 'retorna un código http CREATED' do

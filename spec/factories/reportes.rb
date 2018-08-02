@@ -7,6 +7,7 @@ FactoryBot.define do
     attachments { }
     sequence(:folio) { |n| "100000#{n}" }
     street             Faker::Address.street_name
+    house_number       Faker::Address.building_number
     zip_code           Faker::Address.zip_code
     colony             Faker::Address.city
     requester_name     Faker::Name.first_name
