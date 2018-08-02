@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2018_07_11_011523) do
 
   create_table "reportes", force: :cascade do |t|
     t.date "date", default: "2018-08-02", null: false
-    t.string "hour", default: "14:18:23", null: false
-    t.text "description", null: false
+    t.string "hour", default: "14:32:44", null: false
+    t.text "description", default: "N/A", null: false
     t.text "attachments", default: [], array: true
     t.string "folio", null: false
     t.string "zip_code", default: "N/A", null: false
