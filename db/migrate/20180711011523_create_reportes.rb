@@ -4,7 +4,7 @@ class CreateReportes < ActiveRecord::Migration[5.2]
     create_table :reportes do |t|
       t.date :date,                 null: false, default: Time.now.year.to_s + "-" + Time.now.month.to_s + "-" + Time.now.day.to_s
       t.string :hour,               null: false, default: Time.now.strftime("%H:%M:%S")
-      t.text :description,          null: false
+      t.text :description,          null: false, default: 'N/A'
       t.text :attachments,                       default: [],            array: true
       t.string :folio,              null: false
       t.string :zip_code,           null: false, default: 'N/A'
