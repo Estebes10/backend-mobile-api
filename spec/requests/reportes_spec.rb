@@ -146,23 +146,6 @@ RSpec.describe 'API tipos de reportes', type: :request do
 
       end
 
-      context 'por la falta de la descripción' do
-
-        before { @valid_attributes[:description] = nil }
-
-        before { post '/reportes', params: @valid_attributes }
-
-        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'retorna un mensaje de error' do
-          expect(response.body)
-            .to match(/Validation failed: Description can't be blank/)
-        end
-
-      end
-
       context 'por la falta del ID de la situación' do
 
         before { @valid_attributes[:situation_id] = nil }
@@ -210,57 +193,6 @@ RSpec.describe 'API tipos de reportes', type: :request do
         it 'retorna un mensaje de error' do
           expect(response.body)
             .to match(/Validation failed: Colony can't be blank/)
-        end
-
-      end
-
-      context 'por la falta de la calle del lugar de la solicitud' do
-
-        before { @valid_attributes[:zip_code] = nil }
-
-        before { post '/reportes', params: @valid_attributes }
-
-        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'retorna un mensaje de error' do
-          expect(response.body)
-            .to match(/Validation failed: Zip code can't be blank/)
-        end
-
-      end
-
-      context 'por la falta de la calle del lugar de la solicitud' do
-
-        before { @valid_attributes[:requester_name] = nil }
-
-        before { post '/reportes', params: @valid_attributes }
-
-        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'retorna un mensaje de error' do
-          expect(response.body)
-            .to match(/Validation failed: Requester name can't be blank/)
-        end
-
-      end
-
-      context 'por la falta de la calle del lugar de la solicitud' do
-
-        before { @valid_attributes[:requester_lastname] = nil }
-
-        before { post '/reportes', params: @valid_attributes }
-
-        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'retorna un mensaje de error' do
-          expect(response.body)
-            .to match(/Validation failed: Requester lastname can't be blank/)
         end
 
       end

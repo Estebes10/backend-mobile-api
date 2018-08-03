@@ -28,21 +28,21 @@ ActiveRecord::Schema.define(version: 2018_07_11_011523) do
   end
 
   create_table "reportes", force: :cascade do |t|
-    t.date "date", default: "2018-08-02", null: false
-    t.string "hour", default: "14:32:44", null: false
-    t.text "description", default: "N/A", null: false
+    t.date "date", default: "2018-08-03", null: false
+    t.string "hour", default: "11:27:05", null: false
+    t.text "description", default: "N/A"
     t.text "attachments", default: [], array: true
-    t.string "folio", null: false
-    t.string "zip_code", default: "N/A", null: false
+    t.string "folio"
+    t.string "zip_code", default: "N/A"
     t.string "street", default: "N/A", null: false
     t.string "house_number", default: "N/A"
     t.string "colony", default: "N/A", null: false
-    t.string "requester_name", default: "N/A", null: false
-    t.string "requester_lastname", default: "N/A", null: false
+    t.string "requester_name", default: "N/A"
+    t.string "requester_lastname", default: "N/A"
     t.text "people_involved", default: [], array: true
     t.integer "user_id"
     t.integer "situation_id", null: false
-    t.boolean "active", default: true, null: false
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["folio"], name: "index_reportes_on_folio", unique: true

@@ -4,7 +4,6 @@ class Reporte < ApplicationRecord
    after_create :save_folio
 
    validates :folio,
-     presence:   true,
      uniqueness: true
 
   validates :date,
@@ -19,22 +18,10 @@ class Reporte < ApplicationRecord
   validates :situation_id,
     presence: true
 
-  validates :description,
-    presence: true
-
   validates :street,
     presence: true
 
   validates :colony,
-    presence: true
-
-  validates :zip_code,
-    presence: true
-
-  validates :requester_name,
-    presence: true
-
-  validates :requester_lastname,
     presence: true
 
   def find_situation

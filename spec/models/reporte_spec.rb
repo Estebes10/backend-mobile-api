@@ -26,12 +26,6 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).not_to be_valid
   end
 
-  it 'no es válido sin una descripción' do
-    reporte.description = nil
-
-    expect(reporte).not_to be_valid
-  end
-
   it 'no es válido sin en el ID de la situación' do
     reporte.situation_id = nil
 
@@ -56,25 +50,13 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).not_to be_valid
   end
 
-  it 'no es válido sin el código postal del lugar de acontecimiento' do
-    reporte.zip_code = nil
-
-    expect(reporte).not_to be_valid
-  end
-
-  it 'no es válido si el nombre del solicitante' do
-    reporte.requester_name = nil
-
-    expect(reporte).not_to be_valid
-  end
-
-  it 'no es válido sin el apellido del solicitante' do
-    reporte.requester_lastname = nil
-
-    expect(reporte).not_to be_valid
-  end
-
   # Suite de pruebas para validas que los atributos pueden ser nulos
+  it 'es válido sin una descripción' do
+    reporte.description = nil
+
+    expect(reporte).to be_valid
+  end
+
   it 'es válido sin adjuntos (imagenes o videos)' do
     reporte.attachments = nil
 
@@ -95,6 +77,24 @@ RSpec.describe Reporte, type: :model do
 
   it 'es válido sin el numero de casa del lugar de acontecimiento' do
     reporte.house_number = nil
+
+    expect(reporte).to be_valid
+  end
+
+  it 'es válido sin el código postal del lugar de acontecimiento' do
+    reporte.zip_code = nil
+
+    expect(reporte).to be_valid
+  end
+
+  it 'es válido si el nombre del solicitante' do
+    reporte.requester_name = nil
+
+    expect(reporte).to be_valid
+  end
+
+  it 'es válido sin el apellido del solicitante' do
+    reporte.requester_lastname = nil
 
     expect(reporte).to be_valid
   end
