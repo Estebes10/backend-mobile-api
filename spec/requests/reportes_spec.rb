@@ -6,14 +6,14 @@ RSpec.describe 'API tipos de reportes', type: :request do
   describe 'POST /reportes' do
     # valid payload
     before(:each) do
+      @situation = FactoryBot.create(:situation)
       @valid_attributes = {
         date: Time.zone.now.strftime("%Y-%m-%d"),
         hour: Time.now.strftime("%H:%M:%S"),
         description: "Robo en casa habitación",
         attachments: [""],
-        folio: '0000001',
         user_id: nil,
-        situation_id: 1,
+        situation_id: @situation.id,
         street: Faker::Address.street_name,
         house_number:  Faker::Address.building_number,
         zip_code: Faker::Address.zip_code,
@@ -85,6 +85,13 @@ RSpec.describe 'API tipos de reportes', type: :request do
             .to eq(@valid_attributes[:people_involved])
         end
 
+        it 'crea un reporte con el folio del tipo de solicitud que pertenece' do
+          @reporte = Reporte.last
+          @folio = @reporte.id.to_s
+
+          expect(@reporte.folio).to eq(@folio)
+        end
+
         it 'retorna un código http CREATED' do
           expect(response).to have_http_status(201)
         end
@@ -152,23 +159,6 @@ RSpec.describe 'API tipos de reportes', type: :request do
         it 'retorna un mensaje de error' do
           expect(response.body)
             .to match(/Validation failed: Description can't be blank/)
-        end
-
-      end
-
-      context 'por la falta del folio' do
-
-        before { @valid_attributes[:folio] = nil }
-
-        before { post '/reportes', params: @valid_attributes }
-
-        it 'retorna un codigo de error UNPROCCESSABLE ENTITY' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'retorna un mensaje de error' do
-          expect(response.body)
-            .to match(/Validation failed: Folio can't be blank/)
         end
 
       end

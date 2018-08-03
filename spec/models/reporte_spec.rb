@@ -32,12 +32,6 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).not_to be_valid
   end
 
-  it 'no es válido sin un folio' do
-    reporte.folio = nil
-
-    expect(reporte).not_to be_valid
-  end
-
   it 'no es válido sin en el ID de la situación' do
     reporte.situation_id = nil
 
@@ -123,15 +117,6 @@ RSpec.describe Reporte, type: :model do
     reporte.people_involved << person2
 
     expect(reporte.people_involved).to eq([person1, person2])
-  end
-
-  # pruebas para validar que el folio sea único para cada registro
-  it 'no es válido si el folio ya es usado por otro registro' do
-    # Crear un registro previamante e intentar guardar el nuevo registro con el
-    # el mismo folio
-    FactoryBot.create(:reporte, folio: reporte.folio)
-
-    expect(reporte).not_to be_valid
   end
 
 end

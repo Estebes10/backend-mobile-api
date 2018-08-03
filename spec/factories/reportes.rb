@@ -5,7 +5,6 @@ FactoryBot.define do
     hour               "2018-07-10 20:15:23"
     sequence(:description) { |n| "descripcion_#{n}" }
     attachments { }
-    sequence(:folio) { |n| "100000#{n}" }
     street             Faker::Address.street_name
     house_number       Faker::Address.building_number
     zip_code           Faker::Address.zip_code

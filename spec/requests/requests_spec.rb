@@ -42,7 +42,7 @@ RSpec.describe 'Solicitudes API', type: :request do
     end
 
     context 'cuando el registro no existe' do
-      let(:request_id) { 100 }
+      let(:request_id) { 12389123891 }
 
       it 'retorna un codigo http NOT FOUND' do
         expect(response).to have_http_status(404)

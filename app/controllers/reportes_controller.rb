@@ -14,7 +14,6 @@ class ReportesController < ApplicationController
       :date,
       :hour,
       :description,
-      :folio,
       :user_id,
       :situation_id,
       :street,

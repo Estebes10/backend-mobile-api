@@ -1,6 +1,8 @@
 class Reporte < ApplicationRecord
    #serialize(:attachments)
 
+   after_create :save_folio
+
    validates :folio,
      presence:   true,
      uniqueness: true
@@ -56,6 +58,17 @@ class Reporte < ApplicationRecord
     else
       'Usuario no asociado'
     end
+  end
+
+  before_validation(on: :create) do
+    self.folio = Date.today.to_s + Time.zone.now.to_s
+  end
+
+  private
+
+  def save_folio
+    self.folio = self.id.to_s
+    self.save
   end
 
 end
