@@ -6,21 +6,21 @@ RSpec.describe 'Situaciones API', type: :request do
   # inicializar datos de prueba
   let!(:request) { create(:request) }
 
-  let(:request_id) { request.id }
+  let(:code) { request.code }
 
   let!(:events) { create_list(:event, 20, request_id: request.id) }
 
-  let(:event_id) { events.first.id }
+  let(:event_code) { events.first.code }
 
   let!(:situations) { create_list(:situation, 20, event_id: events.first.id) }
 
   let(:id) { situations.first.id }
 
   # Conjunto de pruebas para GET /situations
-  describe 'GET /requests/:request_id/events/:event_id/situations' do
+  describe 'GET /requests/:code/events/:event_code/situations' do
 
     # make HTTP get request before each example
-    before { get "/requests/#{request_id}/events/#{event_id}/situations" }
+    before { get "/requests/#{code}/events/#{event_code}/situations" }
 
     it 'regresa los tipos de situaciones registradas' do
       expect(json).not_to be_empty
@@ -33,8 +33,8 @@ RSpec.describe 'Situaciones API', type: :request do
   end
 
   # Conjunto de pruebas para Obtener una solicitud GET /requests/:id
-  describe 'GET /requests/:request_id/events/:event_id/situations/:id' do
-    before { get "/requests/#{request_id}/events/#{event_id}/situations/#{id}" }
+  describe 'GET /requests/:code/events/:event_code/situations/:id' do
+    before { get "/requests/#{code}/events/#{event_code}/situations/#{id}" }
 
     context 'cuando el registro pedido existe' do
       it 'regresa la situacion' do

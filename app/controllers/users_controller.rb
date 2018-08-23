@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   #*
    # Endpoint : http.//<domain>/register
    # Method : POST
-   # Params : Phone, Name, Lastname, Email and Address
+   # Params : Phone, Name, Lastname and Email
    # Result : JSON
   #*
   def register
@@ -79,8 +79,7 @@ class UsersController < ApplicationController
       :name,
       :lastname,
       :email,
-      :phone,
-      :address
+      :phone
     )
   end
 

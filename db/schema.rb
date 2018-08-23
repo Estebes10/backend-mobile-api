@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2018_07_11_011523) do
   end
 
   create_table "reportes", force: :cascade do |t|
-    t.date "date", default: "2018-08-03", null: false
-    t.string "hour", default: "11:27:05", null: false
+    t.date "date", default: "2018-08-22", null: false
+    t.string "hour", default: "21:55:05", null: false
     t.text "description", default: "N/A"
     t.text "attachments", default: [], array: true
     t.string "folio"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2018_07_11_011523) do
     t.string "lastname", limit: 128, null: false
     t.string "email", limit: 128, null: false
     t.string "phone", limit: 32, null: false
-    t.string "address", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["phone", "email"], name: "index_users_on_phone_and_email", unique: true

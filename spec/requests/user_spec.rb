@@ -50,10 +50,6 @@ RSpec.describe 'Usuario API', type: :request do
         expect(json['user']['email']).to eq(valid_attributes[:email])
       end
 
-      it 'guarda la dirección del usuario' do
-        expect(json['user']['address']).to eq(valid_attributes[:address])
-      end
-
     end
 
     context 'cuando la petición no es correcta' do
@@ -72,7 +68,7 @@ RSpec.describe 'Usuario API', type: :request do
 
       it 'retorna un mensaje de error' do
         expect(json['message'])
-          .to match(/Validation failed: Lastname can't be blank, Email can't be blank, Phone can't be blank, Address can't be blank/)
+          .to match(/Validation failed: Lastname can't be blank, Email can't be blank, Phone can't be blank/)
       end
 
     end
@@ -164,10 +160,6 @@ RSpec.describe 'Usuario API', type: :request do
 
       it 'retorna el correo del usuario' do
         expect(json['email']).to eq(@user.email)
-      end
-
-      it 'retorna la dirección del usuario' do
-        expect(json['address']).to eq(@user.address)
       end
 
     end

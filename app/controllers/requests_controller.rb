@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
   private
 
   def encuentra_solicitud
-    @solicitud = Request.find(params[:id])
+    @solicitud = Request.find_by!(code: params[:code])
   end
 
 end

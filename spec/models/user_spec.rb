@@ -38,12 +38,6 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
-  it 'no es válido sin una dirección' do
-    user.address = nil
-
-    expect(user).not_to be_valid
-  end
-
   # Suite de pruebas para verificar que los datos no sobrepasan los limites
   it 'no es válido si el nombre tiene más de 128 caracteres' do
     user.name = 'a' * 129
@@ -63,14 +57,8 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
-  it 'no es válido si el nombre tiene más de 32 caracteres' do
+  it 'no es válido si el telefono tiene más de 32 caracteres' do
     user.phone = 'a' * 33
-
-    expect(user).not_to be_valid
-  end
-
-  it 'no es válido si el nombre tiene más de 256 caracteres' do
-    user.email = 'a' * 257
 
     expect(user).not_to be_valid
   end
