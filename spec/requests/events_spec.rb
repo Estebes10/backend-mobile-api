@@ -5,16 +5,16 @@ RSpec.describe 'API tipos de eventos', type: :request do
   # inicializar datos de prueba
   let!(:request) { create(:request) }
 
-  let(:request_id) { request.id }
+  let(:code) { request.code }
 
   let!(:events) { create_list(:event, 20, request_id: request.id) }
 
-  let(:event_id) { events.first.id }
+  let(:event_code) { events.first.code }
 
-  # Conjunto de pruebas para GET /requests/:request_id/events
+  # Conjunto de pruebas para GET /requests/:code/events
   # Retorna todos los tipos de eventos por cada solicitud
-  describe 'GET /requests/:request_id/events' do
-    before { get "/requests/#{request_id}/events" }
+  describe 'GET /requests/:code/events' do
+    before { get "/requests/#{code}/events" }
 
     context 'cuando existe el tipo de evento' do
       it 'retorn un código http OK' do
@@ -27,7 +27,7 @@ RSpec.describe 'API tipos de eventos', type: :request do
     end
 
     context 'cuando no existe el tipo de solicitud' do
-      let(:request_id) { 0 }
+      let(:code) { 'ADLLLL' }
 
       it 'retorna un codigo http NOT FOUND' do
         expect(response).to have_http_status(404)
@@ -41,9 +41,9 @@ RSpec.describe 'API tipos de eventos', type: :request do
 
   # Conjunto de pruebas para GET /requets/:request_id/events/:id
   # retorna un tipo de evento de acuerdo al tipo de solicitud
-  describe 'GET /requests/:request_id/events/:id' do
+  describe 'GET /requests/:code/events/:event_code' do
 
-    before { get "/requests/#{request_id}/events/#{event_id}" }
+    before { get "/requests/#{code}/events/#{event_code}" }
 
     context 'cuando el evento existe' do
       it 'retorna un codigo http OK' do
@@ -51,12 +51,12 @@ RSpec.describe 'API tipos de eventos', type: :request do
       end
 
       it 'regresa el tipo de evento pedido' do
-        expect(json['id']).to eq(event_id)
+        expect(json['code']).to eq(event_code)
       end
     end
 
     context 'cuando el evento no existe' do
-      let(:event_id) { 0 }
+      let(:event_code) { '123899' }
 
       it 'retorna un código http NOT FOUND' do
         expect(response).to have_http_status(404)

@@ -17,11 +17,11 @@ class SituationsController < ApplicationController
   private
 
   def encuentra_solicitud
-    @solicitud = Request.find(params[:request_id])
+    @solicitud = Request.find_by!(code: params[:code])
   end
 
   def encuentra_evento
-    @evento = @solicitud.events.find_by!(id: params[:event_id]) if @solicitud
+    @evento = @solicitud.events.find_by!(code: params[:event_code]) if @solicitud
   end
 
   def encuentra_situacion
