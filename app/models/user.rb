@@ -21,8 +21,4 @@ class User < ApplicationRecord
     length:     { maximum: 32 },
     uniqueness: true
 
-  validates :address,
-    presence: true,
-    length:   { maximum: 256 }
-
 end
