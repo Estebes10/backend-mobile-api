@@ -1,5 +1,6 @@
 class Reporte < ApplicationRecord
    #serialize(:attachments)
+   has_many_attached :images
 
    after_create :save_folio
 

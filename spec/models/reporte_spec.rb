@@ -57,12 +57,6 @@ RSpec.describe Reporte, type: :model do
     expect(reporte).to be_valid
   end
 
-  it 'es válido sin adjuntos (imagenes o videos)' do
-    reporte.attachments = nil
-
-    expect(reporte).to be_valid
-  end
-
   it 'es válido si no se especifica un usuario' do
     reporte.user_id = nil
 
@@ -97,16 +91,6 @@ RSpec.describe Reporte, type: :model do
     reporte.requester_lastname = nil
 
     expect(reporte).to be_valid
-  end
-
-  it 'es valido si se agregan varios adjuntos' do
-    reporte.attachments = []
-    adjunto1 = Faker::Company.logo
-    adjunto2 = Faker::Company.logo
-    reporte.attachments << adjunto1
-    reporte.attachments << adjunto2
-
-    expect(reporte.attachments).to eq([adjunto1, adjunto2])
   end
 
   it 'es valido si se agregan varias personas involucradas' do

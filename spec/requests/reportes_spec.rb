@@ -11,7 +11,6 @@ RSpec.describe 'API tipos de reportes', type: :request do
         date: Time.zone.now.strftime("%Y-%m-%d"),
         hour: Time.now.strftime("%H:%M:%S"),
         description: "Robo en casa habitación",
-        attachments: [""],
         user_id: nil,
         situation_id: @situation.id,
         street: Faker::Address.street_name,

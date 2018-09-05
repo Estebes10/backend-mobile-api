@@ -22,7 +22,7 @@ class ReportesController < ApplicationController
       :house_number,
       :requester_name,
       :requester_lastname,
-      { :attachments => [], :people_involved => [:name, :lastname, :phone] }
+      images: []
     )
   end
 

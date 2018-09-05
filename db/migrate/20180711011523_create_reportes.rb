@@ -5,7 +5,6 @@ class CreateReportes < ActiveRecord::Migration[5.2]
       t.date :date,                 null: false, default: Time.now.year.to_s + "-" + Time.now.month.to_s + "-" + Time.now.day.to_s
       t.string :hour,               null: false, default: Time.now.strftime("%H:%M:%S")
       t.text :description,                       default: 'N/A'
-      t.text :attachments,                       default: [],            array: true
       t.string :folio
       t.string :zip_code,                        default: 'N/A'
       t.string :street,             null: false, default: 'N/A'
