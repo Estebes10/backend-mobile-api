@@ -412,3 +412,12 @@ Situation.create(
   instantaneous: false,
   event_id:      organismos.id
 )
+
+#================================== Boton Pánico ==============================#
+Situation.create(
+  code:          'SBP',
+  name:          'Botón de Pánico',
+  status:        true,
+  instantaneous: true,
+  event_id:      boton_panico.id
+)
