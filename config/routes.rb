@@ -33,4 +33,6 @@ Rails.application.routes.draw do
 =end
   post '/reportes', to: "reportes#create"
 
+  get '/reportes/:id', to: "reportes#show"
+
 end

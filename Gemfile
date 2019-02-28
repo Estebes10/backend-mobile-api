@@ -22,6 +22,8 @@ gem 'jwt'
 # Serializer for custom representation of JSON responses
 gem 'active_model_serializers', '~> 0.10.0'
 
+# Library for google cloud storage
+gem "google-cloud-storage", "~> 1.8", require: false
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

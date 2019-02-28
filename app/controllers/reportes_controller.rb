@@ -1,5 +1,10 @@
 class ReportesController < ApplicationController
 
+  def show
+    @reporte = Reporte.find(params[:id])
+    json_response(@reporte)
+  end
+
   # POST /todos
   def create
     @reporte = Reporte.create!(reporte_params)
